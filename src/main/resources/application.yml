@@ -11,13 +11,6 @@ spring:
     url: jdbc:mysql://localhost:3306/sample
     username: root
     password: 123456789
-  security:
-    oauth2:
-      client:
-        registration:
-          google:
-            client-id: 956374525400-bglv4m9gq0pdh4d570bm45p70hq79t4v.apps.googleusercontent.com
-            client-secret: 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
 
 api:
   security:
