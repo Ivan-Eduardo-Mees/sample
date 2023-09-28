@@ -3,7 +3,7 @@ package com.application.controller;
 import com.application.dto.user.AuthenticationDTO;
 import com.application.dto.user.LoginResponseDTO;
 import com.application.dto.user.RegisterDTO;
-import com.application.entity.user.User;
+import com.application.model.user.UserModel;
 import com.application.repository.UserRepository;
 import com.application.service.user.TokenService;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +33,7 @@ public class AuthenticationController {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
         var auth = authenticationManager.authenticate(usernamePassword);
 
-        var token = tokenService.generateToken((User) auth.getPrincipal());
+        var token = tokenService.generateToken((UserModel) auth.getPrincipal());
 
         return ResponseEntity.ok(new LoginResponseDTO(token));
     }
@@ -43,9 +43,9 @@ public class AuthenticationController {
         if(this.repository.findByLogin(data.login()) != null) return ResponseEntity.badRequest().build();
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
-        User newUser = new User(data.login(), encryptedPassword, data.role());
+        UserModel newUserModel = new UserModel(data.login(), encryptedPassword, data.role());
 
-        this.repository.save(newUser);
+        this.repository.save(newUserModel);
 
         return ResponseEntity.ok().build();
     }
