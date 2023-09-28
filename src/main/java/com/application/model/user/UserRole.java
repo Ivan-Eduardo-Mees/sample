@@ -1,4 +1,4 @@
-package com.application.entity.user;
+package com.application.model.user;
 
 public enum UserRole {
     ADMIN("admin"),

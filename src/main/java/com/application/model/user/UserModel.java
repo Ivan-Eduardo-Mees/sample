@@ -1,4 +1,4 @@
-package com.application.entity.user;
+package com.application.model.user;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 @ToString
-public class User implements UserDetails{
+public class UserModel implements UserDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -24,7 +24,7 @@ public class User implements UserDetails{
     private String password;
     private UserRole role;
 
-    public User(String login, String password, UserRole role){
+    public UserModel(String login, String password, UserRole role){
         this.login = login;
         this.password = password;
         this.role = role;
